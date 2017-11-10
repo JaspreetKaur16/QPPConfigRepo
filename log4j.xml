@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 
+	RewriteAppender with QppRewritePolicy forwards a logging request to another appender after rewriting the logging event.
+	QpsRewriteAppender adds following properties to the logging event:
+		1. "qpp.user.id" - Contains Id of the logged-on user who performed the operation  
+		2. "qpp.user.name" - Contains username of the logged-on user who performed the operation  
+		3. "qpp.session.id" - Contains sessionId of session being used for performing the operation
+		
+	These properties can further be used in conversionPattern of the appenders the way other properties are used. 
+	For example:
+	<param name="conversionPattern" value="[SessionId:%properties{qpp_sessionId} UserId:%properties{qpp.user.id} UserName:%properties{qpp.user.name}] "/>
+	-->
+	<appender name="QppAppender" class="org.apache.log4j.rewrite.RewriteAppender">
+	 	<appender-ref ref="QpsServerAsyncAppender" />
+		<rewritePolicy class="com.quark.qpp.common.logging.QppRewritePolicy"/>
+	</appender>	
+ 	<appender name="QpsServerAsyncAppender" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="ConsoleAppender" />
+		<appender-ref ref="QpsServerAllFileAppender" />
+		<appender-ref ref="QpsServerFatalFileAppender" />
+		<!-- 	<appender-ref ref="NTEventLogAppender"/>   -->
+	</appender>
+
+  	<appender name="WebHubAppender" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="ConsoleAppender" />
+		<appender-ref ref="WebEditorAllFileAppender" />
+		<!-- <appender-ref ref="NTEventLogAppender"/>   -->
+	</appender>
+	<appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p [%c][%t] [User(Id:%properties{qpp.user.id}, Name:%properties{qpp.user.name})] - %m%n"/>
+		</layout>
+	</appender>
+	<appender name="WebEditorAllFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="log/Workspace.log" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p [%c][%t] - %m%n"/>
+		</layout>
+	</appender>
+ 	<appender name="QpsServerAllFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="log/QppServer.log" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="20" />
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p [%c][%t] [User(Id:%properties{qpp.user.id}, Name:%properties{qpp.user.name})] - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="PublishingAppender" class="org.apache.log4j.rewrite.RewriteAppender">
+ 	 	<appender-ref ref="PublishingAsyncAppender" />
+		<rewritePolicy class="com.quark.qpp.common.logging.QppRewritePolicy"/>
+	</appender>
+	<appender name="PublishingAsyncAppender" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="PublishingFileAppender" />
+	</appender>
+	<appender name="PublishingFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="log/PublishingFramework.log" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p [%c][%t] [User(Id:%properties{qpp.user.id}, Name:%properties{qpp.user.name})] - %m%n"/>
+		</layout>
+	</appender>
+	<appender name="QpsServerFatalFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="log/Fatal.log" />
+		<param name="maxFileSize" value="1MB" />
+		<param name="maxBackupIndex" value="1" />
+		<param name="Append" value="false" />
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="TRACE" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="SQL_TRACE#com.quark.qpp.common.logging.SqlTraceLevel" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="DEBUG" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="INFO" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="WARN" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="ERROR" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="ArchiveAppender" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="ArchiveAllFileAppender" />
+	</appender>
+	<appender name="ArchiveAllFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="log/Archive.log" />
+		<param name="maxFileSize" value="30MB" />
+		<param name="maxBackupIndex" value="20" />
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p [%c][%t] - %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="RestoreAppender" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="RestoreAllFileAppender" />
+	</appender>
+	<appender name="RestoreAllFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="log/Restore.log" />
+		<param name="maxFileSize" value="30MB" />
+		<param name="maxBackupIndex" value="20" />
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="conversionPattern" value="%d %p [%c][%t] - %m%n"/>
+		</layout>
+	</appender>
+	
+	
+	<!-- MessagePublisher logging -->
+    <appender name="MessagePublisherAppender" class="org.apache.log4j.rewrite.RewriteAppender">
+         <appender-ref ref="MessagePublisherAsyncAppender" />
+          <rewritePolicy class="com.quark.qpp.common.logging.QppRewritePolicy"/>
+    </appender>
+    <appender name="MessagePublisherAsyncAppender" class="org.apache.log4j.AsyncAppender">
+          <appender-ref ref="MessagePublisherFileAppender" />
+    </appender>    
+    <appender name="MessagePublisherFileAppender" class="org.apache.log4j.RollingFileAppender">
+          <param name="file" value="log/MessagePublisher.log" />
+          <param name="maxFileSize" value="10MB" />
+          <param name="maxBackupIndex" value="20" />
+          <layout class="org.apache.log4j.EnhancedPatternLayout">
+                <param name="conversionPattern" value="%d\t%p\t%t\t%properties{qpp.user.id}\t%properties{qpp.user.name}\t%properties{qpp.session.id}\t%m%n"/>
+          </layout>
+    </appender>
+    
+    <appender name="DatabaseMonitoringAppender" class="org.apache.log4j.rewrite.RewriteAppender">
+         <appender-ref ref="DatabaseMonitoringAsyncAppender" />
+          <rewritePolicy class="com.quark.qpp.common.logging.QppRewritePolicy"/>
+    </appender>
+    <appender name="DatabaseMonitoringAsyncAppender" class="org.apache.log4j.AsyncAppender">
+          <appender-ref ref="DatabaseMonitoringFileAppender" />
+    </appender>    
+    <appender name="DatabaseMonitoringFileAppender" class="org.apache.log4j.RollingFileAppender">
+          <param name="file" value="log/DatabaseMonitoring.log" />
+          <param name="maxFileSize" value="10MB" />
+          <param name="maxBackupIndex" value="20" />
+          <layout class="org.apache.log4j.EnhancedPatternLayout">
+                <param name="conversionPattern" value="%d\t%p\t[%t]\t%m%n"/>
+          </layout>
+    </appender>
+    
+	<!-- Uncomment below and the NTEventLogAppender references above to allow
+		logging in Event Viewer in Windows -->
+	<!--
+		<appender name="NTEventLogAppender" class="org.apache.log4j.nt.NTEventLogAppender">
+		<param name="source" value="QPP Server"/>
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+		<param name="conversionPattern" value="%d %p [%c][%t] - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+		<param name="LevelToMatch" value="SQL_TRACE#com.quark.qpp.common.logging.SqlTraceLevel" />
+		<param name="AcceptOnMatch" value="false" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+		<param name="LevelToMatch" value="DEBUG"/>
+		<param name="AcceptOnMatch" value="false"/>
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+		<param name="LevelToMatch" value="TRACE"/>
+		<param name="AcceptOnMatch" value="false"/>
+		</filter>
+		</appender>
+	-->
+
+
+	<!-- List of Log Level available in order are:
+		ALL
+		TRACE
+		SQL_TRACE#com.quark.qpp.common.logging.SqlTraceLevel
+		DEBUG
+		INFO
+		WARN
+		ERROR
+		FATAL
+		OFF
+
+		Since, the SQL_TRACE level is a customized level, its names should be used in entirety as above.
+		Enabling a particular level will enable logging for all the levels below it.
+
+		Logging can also be customized for specific packages as done below for package 'com.quark.qpp.core.query.dao'
+		or for specific classes as done below for class 'com.quark.qpp.app.impl.DatabaseVerifier'
+	-->
+
+	<!-- To enable logging of SQL statements fired for package 'com.quark.qpp.core.query.dao', uncomment
+		the logger below.
+		The effect of this will be that for the given package 'SQL_TRACE' level will be
+		used, and for other packages under 'com.quark.qpp', level as mentioned below
+		(INFO be default) will be used
+	-->
+	<!--
+	<logger name="com.quark.qpp.core.query.dao">
+		<level value="SQL_TRACE#com.quark.qpp.common.logging.SqlTraceLevel" />
+	</logger>
+	 -->
+
+
+	<!-- To enable TRACE logging, uncomment the logger below.
+		The effect of this will be that for the class 'com.quark.qpp.app.impl.DatabaseVerifier'
+		TRACE level will be used, and for other classes under 'com.quark.qpp', level as mentioned below will
+		be used. -->
+	<!--
+		<logger name="com.quark.qpp.app.impl.DatabaseVerifier">
+		<level value="TRACE"/>
+		</logger>
+	-->
+    
+  	<logger name="com.quark.qpp.core.messaging.service.impl.MessagePublisherImpl" additivity="false">
+          <level value="DEBUG" />
+          <appender-ref ref="MessagePublisherAppender" />
+    </logger>
+    <logger name="com.quark.qpp.common.dao.rdbms.DbConnectionsMonitoring" additivity="false">
+          <level value="INFO" />
+          <appender-ref ref="DatabaseMonitoringAppender" />
+    </logger>
+    <logger name="com.quark.qpp.common.dao.rdbms.DbConnectionsMonitoringThread" additivity="false">
+          <level value="INFO" />
+          <appender-ref ref="DatabaseMonitoringAppender" />
+    </logger>
+    
+    
+	<logger name="com.quark.qpp.web.webeditor" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="WebHubAppender" />
+	</logger>
+
+	<logger name="com.quark.qpp.publishing" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="PublishingAppender" />
+	</logger>
+
+	<!-- To change the logging for the entire application to TRACE level (for example),
+		change the value below(INFO) to TRACE -->
+	<logger name="com.quark.qpp">
+		<level value="INFO" />
+	</logger>
+
+	<!-- Set Axis log level off to avoid excessive logging for every exception/fault.
+		Consider turning it to INFO/DEBUG if facing connectivity or startup problems. -->
+	<logger name="org.apache.axis2">
+		<level value="OFF" />
+	</logger>
+
+	<!-- Set Tomcat's log level off to avoid excessive logging for every web exception
+		Consider turning it to INFO/DEBUG if facing HTTP/WebService related problems. -->
+	<logger name="org.apache.catalina">
+		<level value="OFF" />
+	</logger>
+
+
+	<logger name="com.quark.qpp.service.facade.ArchiveFacade" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="ArchiveAppender" />
+	</logger>
+
+	<logger name="com.quark.qpp.service.facade.RestoreFacade" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="RestoreAppender" />
+	</logger>
+
+	<root>
+		<priority value="ERROR" />
+		<appender-ref ref="QppAppender" />
+	</root>
+</log4j:configuration>
