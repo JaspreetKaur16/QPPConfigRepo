@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE content-mimetype-mappings [
+	<!ELEMENT content-mimetype-mappings (content-type*, import*)>
+	<!ELEMENT content-type (mime-type+)>
+	<!ELEMENT mime-type (#PCDATA)>
+	<!ELEMENT import (#PCDATA)>
+	<!ATTLIST content-type
+		name CDATA #REQUIRED
+	>
+	<!ATTLIST import
+		resource CDATA #REQUIRED
+	>	
+]>
+<content-mimetype-mappings>
+
+	<content-type name="Asset">
+		<mime-type>application/octet-stream</mime-type>
+	</content-type>
+
+	<content-type name="Project">
+		<mime-type>application/x-adobe-indesign</mime-type>
+	</content-type>
+	<content-type name="QuarkXPress Project">
+		<mime-type>application/vnd.quark.quarkxpress</mime-type>
+	</content-type>
+	<content-type name="QuarkXPress Project Template">
+		<mime-type>application/x-quark.xpresstemplate</mime-type>
+	</content-type>
+	<content-type name="App Studio Package">
+		<mime-type>application/aps</mime-type>
+	</content-type>
+	<content-type name="Quark AVE Package">
+		<mime-type>application/zavep</mime-type>
+	</content-type>
+	<content-type name="QuarkXPress Library">
+		<mime-type>application/x-quark.xpresslibrary</mime-type>
+	</content-type>
+
+	<content-type name="QuarkCopyDesk Article">
+		<mime-type>application/x-quark.copydesk</mime-type>
+	</content-type>
+	<content-type name="QuarkCopyDesk Article Template">
+		<mime-type>application/x-quark.copydesktemplate</mime-type>
+	</content-type>
+	<content-type name="Microsoft Word">
+		<mime-type>application/msword</mime-type>   <!-- *.doc, *.dot -->
+		<mime-type>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mime-type> <!-- *.docx -->
+		<mime-type>application/vnd.ms-word.document.macroenabled.12</mime-type>	<!-- *.docm -->
+	</content-type>
+	<content-type name="Microsoft Word Template">
+		<mime-type>application/vnd.openxmlformats-officedocument.wordprocessingml.template</mime-type>   <!-- *.dotx -->
+		<mime-type>application/vnd.ms-word.template.macroEnabled.12</mime-type> <!-- *.dotm -->
+	</content-type>
+	<content-type name="Microsoft Excel">
+		<mime-type>application/vnd.ms-excel</mime-type> <!-- *.xls, *.xlt, *.xla -->
+		<mime-type>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</mime-type> <!-- *.xlsx -->
+		<mime-type>application/vnd.ms-excel.sheet.macroEnabled.12</mime-type> <!-- *.xlsm -->
+		<mime-type>application/vnd.ms-excel.addin.macroEnabled.12</mime-type> <!-- *.xlam -->
+		<mime-type>application/vnd.ms-excel.sheet.binary.macroEnabled.12</mime-type> <!-- *.xlsb -->
+	</content-type>
+	<content-type name="Microsoft Excel Template">
+		<mime-type>application/vnd.openxmlformats-officedocument.spreadsheetml.template</mime-type> <!-- *.xltx -->
+		<mime-type>application/vnd.ms-excel.template.macroEnabled.12</mime-type> <!-- *.xltm -->
+	</content-type>
+	<content-type name="Microsoft Powerpoint">
+		<mime-type>application/vnd.ms-powerpoint</mime-type> <!-- *.ppt, *.pot, *pps, *ppa -->
+		<mime-type>application/vnd.openxmlformats-officedocument.presentationml.presentation</mime-type> <!-- *.pptx -->
+		<mime-type>application/vnd.ms-powerpoint.presentation.macroenabled.12</mime-type> <!-- *.pptm -->
+		<mime-type>application/vnd.openxmlformats-officedocument.presentationml.slideshow</mime-type> <!-- *.ppsx -->
+		<mime-type>application/vnd.ms-powerpoint.addin.macroEnabled.12</mime-type> <!-- *.ppam -->
+		<mime-type>application/vnd.ms-powerpoint.slideshow.macroEnabled.12</mime-type> <!-- *.ppsm -->
+	</content-type>
+	<content-type name="Microsoft Powerpoint Template">
+		<mime-type>application/vnd.ms-powerpoint.template.macroenabled.12</mime-type> <!-- *.potm -->
+		<mime-type>application/vnd.openxmlformats-officedocument.presentationml.template</mime-type> <!-- *.potx -->
+	</content-type>
+	<content-type name="Plain Text">
+		<mime-type>text/plain</mime-type>
+	</content-type>
+	<content-type name="XPress Tags">
+		<mime-type>application/x-quark.xtag</mime-type>
+	</content-type>
+	<content-type name="Hyphenation Exceptions">
+		<mime-type>application/xml; format=hyphenationexceptions</mime-type>
+	</content-type>
+	<content-type name="Auxiliary Dictionary">
+		<mime-type>application/xml; format=auxiliarydictionary</mime-type>
+	</content-type>
+	<content-type name="Rich Text">
+		<mime-type>application/rtf</mime-type>
+		<mime-type>text/rtf</mime-type>
+	</content-type>
+	<content-type name="HTML">
+		<mime-type>text/html</mime-type>
+		<mime-type>application/xhtml+xml</mime-type>
+	</content-type>
+
+	<content-type name="XML">
+		<mime-type>application/xml</mime-type>
+		<mime-type>text/xml</mime-type>
+	</content-type>
+	<content-type name="DITA Document">
+		<mime-type>application/dita+xml</mime-type>
+	</content-type>
+	<content-type name="DITA Map">
+		<mime-type>application/dita+xml; format=map</mime-type>
+	</content-type>
+	<content-type name="Topic">
+		<mime-type>application/dita+xml; format=topic</mime-type>
+	</content-type>
+	<content-type name="Task">
+		<mime-type>application/dita+xml; format=task</mime-type>
+	</content-type>
+	<content-type name="Concept">
+		<mime-type>application/dita+xml; format=concept</mime-type>
+	</content-type>
+	<content-type name="Reference">
+		<mime-type>application/dita+xml; format=reference</mime-type>
+	</content-type>
+
+ 	<content-type name="Business Document">
+		<mime-type>application/dita+xml; format=busdoc</mime-type>
+	</content-type>
+	
+	<content-type name="Smart Content">
+		<mime-type>application/xml; format=smartcontent</mime-type>
+	</content-type>
+	
+	<content-type name="Smart Document">
+		<mime-type>application/xml; format=smartdoc</mime-type>
+	</content-type>
+	
+	<content-type name="Smart Section">
+		<mime-type>application/xml; format=smartsection</mime-type>
+	</content-type>  
+
+	<content-type name="Smart Table">
+		<mime-type>application/xml; format=smarttable</mime-type>
+	</content-type>
+	
+	<content-type name="Smart Region">
+		<mime-type>application/xml; format=smartregion</mime-type>
+	</content-type>
+	
+	<content-type name="Box">
+		<mime-type>application/xml; format=box</mime-type>
+	</content-type>  
+	
+	<content-type name="Callout">
+		<mime-type>application/xml; format=callout</mime-type>
+	</content-type>  
+	
+	<content-type name="InDesign Document">
+		<mime-type>application/x-adobe-indesign</mime-type>
+	</content-type>
+
+	<content-type name="InDesign Document Template">
+		<mime-type>application/x-adobe-indesign-template</mime-type>
+	</content-type>
+
+	<content-type name="InCopy Assignment">
+		<mime-type>application/x-adobe-incopy-assignment</mime-type>
+	</content-type>
+
+	<content-type name="InCopy Document">
+		<mime-type>application/x-adobe-incopy-document</mime-type>
+	</content-type>
+
+	<content-type name="InCopy Document Template">
+		<mime-type>application/x-adobe-incopy-document-template</mime-type>
+	</content-type>
+
+	<content-type name="Picture">
+		<mime-type>image/bmp</mime-type>
+		<mime-type>image/x-ms-bmp</mime-type>
+		<mime-type>image/gif</mime-type>
+		<mime-type>image/jpeg</mime-type>
+		<mime-type>image/png</mime-type>
+		<mime-type>image/tiff</mime-type>
+		<mime-type>image/tiff-fx</mime-type>
+		<mime-type>image/pict</mime-type>
+		<mime-type>image/x-pcx</mime-type>
+		<mime-type>image/x-pict</mime-type>
+		<mime-type>image/jpeg</mime-type>
+		<mime-type>image/cgm</mime-type>
+		<mime-type>image/example</mime-type>
+		<mime-type>image/fits</mime-type>
+		<mime-type>image/g3fax</mime-type>
+		<mime-type>image/gif</mime-type>
+		<mime-type>image/ief</mime-type>
+		<mime-type>image/jp2</mime-type>
+		<mime-type>image/jpm</mime-type>
+		<mime-type>image/jpx</mime-type>
+		<mime-type>image/naplps</mime-type>
+		<mime-type>image/png</mime-type>
+		<mime-type>image/prs.btif</mime-type>
+		<mime-type>image/prs.pti</mime-type>
+		<mime-type>image/t38</mime-type>
+		<mime-type>image/svg+xml</mime-type>
+		<mime-type>image/vnd.adobe.photoshop</mime-type>
+		<mime-type>image/vnd.cns.inf2</mime-type>
+		<mime-type>image/vnd.djvu</mime-type>
+		<mime-type>image/vnd.dwg</mime-type>
+		<mime-type>image/vnd.dxf</mime-type>
+		<mime-type>image/vnd.fastbidsheet</mime-type>
+		<mime-type>image/vnd.fpx</mime-type>
+		<mime-type>image/vnd.fst</mime-type>
+		<mime-type>image/vnd.fujixerox.edmics-mmr</mime-type>
+		<mime-type>image/vnd.fujixerox.edmics-rlc</mime-type>
+		<mime-type>image/vnd.globalgraphics.pgb</mime-type>
+		<mime-type>image/vnd.microsoft.icon</mime-type>
+		<mime-type>image/vnd.mix</mime-type>
+		<mime-type>image/vnd.ms-modi</mime-type>
+		<mime-type>image/vnd.net-fpx</mime-type>
+		<mime-type>image/vnd.sealed.png</mime-type>
+		<mime-type>image/vnd.sealedmedia.softseal.gif</mime-type>
+		<mime-type>image/vnd.sealedmedia.softseal.jpg</mime-type>
+		<mime-type>image/vnd.svf</mime-type>
+		<mime-type>image/vnd.wap.wbmp</mime-type>
+		<mime-type>image/vnd.xiff</mime-type>
+		<mime-type>image/vnd.adobe.photoshop</mime-type>
+		<mime-type>image/x-psd</mime-type>
+		<mime-type>image/hdr</mime-type>
+		<mime-type>image/exr</mime-type>
+		<mime-type>application/photoshop</mime-type>
+		<mime-type>application/pdf</mime-type>
+		<mime-type>application/postscript</mime-type>
+		<mime-type>image/vnd.adobe.photoshop</mime-type>
+		<mime-type>image/x-scitex</mime-type>
+		<mime-type>application/x-msmetafile</mime-type>
+		<mime-type>image/x-wmf</mime-type>
+		<mime-type>application/x-emf</mime-type>
+		<mime-type>image/pcd</mime-type>
+	</content-type>
+	
+	<content-type name="Audio">
+		<mime-type>audio/wav</mime-type>
+		<mime-type>audio/mpeg</mime-type>
+		<mime-type>audio/midi</mime-type>
+		<mime-type>audio/basic</mime-type>
+		<mime-type>audio/mpa</mime-type>
+		<mime-type>audio/mpa-robust</mime-type>
+		<mime-type>audio/mp4a-latm</mime-type>
+		<mime-type>audio/ogg</mime-type>
+		<mime-type>audio/3gpp</mime-type>
+		<mime-type>audio/3gpp2</mime-type>
+		<mime-type>audio/ac3</mime-type>
+		<mime-type>audio/adpcm</mime-type>
+		<mime-type>audio/amr</mime-type>
+		<mime-type>audio/amr-wb</mime-type>
+		<mime-type>audio/amr-wb+</mime-type>
+		<mime-type>audio/asc</mime-type>
+		<mime-type>audio/x-wav</mime-type>
+		<mime-type>audio/x-aac</mime-type>
+		<mime-type>audio/x-aiff</mime-type>
+		<mime-type>audio/x-mpegurl</mime-type>
+		<mime-type>audio/x-pn-realaudio</mime-type>
+		<mime-type>audio/x-ms-wax</mime-type>
+		<mime-type>audio/x-ms-wma</mime-type>
+		<mime-type>audio/x-pn-realaudio</mime-type>
+	</content-type>
+
+	<content-type name="Video">
+		<mime-type>video/mpeg</mime-type>
+		<mime-type>video/quicktime</mime-type>
+		<mime-type>video/3gpp</mime-type>
+		<mime-type>video/h263</mime-type>
+		<mime-type>video/h264</mime-type>
+		<mime-type>video/jpeg</mime-type>
+		<mime-type>video/mp4</mime-type>
+		<mime-type>video/ogg</mime-type>
+		<mime-type>video/x-flv</mime-type>
+		<mime-type>video/x-la-asf</mime-type>
+		<mime-type>video/x-ms-asf</mime-type>
+		<mime-type>video/x-msvideo</mime-type>
+		<mime-type>video/x-sgi-movie</mime-type>
+	</content-type>
+	
+	<content-type name="Microsoft Visio">
+		<mime-type>application/visio</mime-type>
+		<mime-type>application/x-visio</mime-type> <!-- *.vdx, *.vsx -->
+		<mime-type>application/vnd.visio</mime-type> <!-- *.vsd, *.vss, *.vst -->
+		<mime-type>application/visio.drawing</mime-type>
+		<mime-type>application/vsd</mime-type>
+		<mime-type>application/x-vsd</mime-type>
+		<mime-type>image/x-vsd</mime-type>
+		<mime-type>zz-application/zz-winassoc-vsd</mime-type>
+		<mime-type>application/vnd.ms-visio.drawing</mime-type> <!-- *.vsdx -->
+		<mime-type>application/vnd.ms-visio.stencil</mime-type> <!-- *.vssx -->
+		<mime-type>application/vnd.visio.webdrawing</mime-type> <!-- *.vdw -->
+		<mime-type>application/vnd.ms-visio.drawing.macroenabled.12</mime-type> <!-- *.vsdm -->
+		<mime-type>application/vnd.ms-visio.stencil.macroenabled.12</mime-type> <!-- *.vssm -->
+	</content-type>
+	
+	<content-type name="Microsoft Visio Template">
+		<mime-type>application/vnd.ms-visio.template</mime-type> <!-- *.vstx -->
+		<mime-type>application/vnd.visio.template</mime-type> <!-- *.vtx -->
+		<mime-type>application/vnd.ms-visio.template.macroenabled.12</mime-type> <!-- *.vstm -->
+	</content-type>
+	
+	<import resource="content-mimetype-mappings-ext.xml"/>
+
+</content-mimetype-mappings>
