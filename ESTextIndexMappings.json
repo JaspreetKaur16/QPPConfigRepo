@@ -1,0 +1,17 @@
+{
+  "quark": {
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "AssetId": {
+          "type": "string",
+          "store": true
+        },
+        "TextContent": {
+          "type": "string",
+          "store": true
+        }
+      }
+    }
+}
