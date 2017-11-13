@@ -1,0 +1,7 @@
+{
+  "quark": {
+      "_source": {
+        "enabled": true
+      }
+    }
+}
