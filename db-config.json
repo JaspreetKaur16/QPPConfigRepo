@@ -1,6 +1,6 @@
 {
   "qpp.jdbc.driverClassName": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
   "qpp.jdbc.password": "Qpppwd1234",
-  "qpp.jdbc.url": "jdbc:sqlserver://devbullet\\MSSQLServer;databaseName=devqppdb",
+  "qpp.jdbc.url": "jdbc:sqlserver://devbullet......nodeJSsample\\MSSQLServer;databaseName=devqppdb",
   "qpp.jdbc.userName": "devuser"
 }
